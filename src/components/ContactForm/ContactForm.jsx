@@ -27,9 +27,6 @@ const ContactForm = ({onSubmit}) => {
         }
     };
 
-    // const reset = e => {
-
-    // }
 
     const onSubmitForm = e => {
         e.preventDefault();
