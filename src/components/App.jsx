@@ -7,16 +7,18 @@ import Filter from './Filter';
 import ContactForm from "./ContactForm";
 
 
-
+// () => {
+//     return JSON.parse(window.localStorage.getItem('contact') ?? contact)
+//   }
  
 const App = () => {
-  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contact') ?? contact));
+  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contact')) ?? contact);
   const [filter, setFilter] = useState('');
 
+  useEffect(() => { 
+    window.localStorage.setItem('contact' ,JSON.stringify(contacts))
+  } ,[contacts])
 
-  useEffect(() => {
-    return window.localStorage.setItem('contact', JSON.stringify(contacts));
-  } , [contacts])
   const onFilterContacts = () => {
     const normalize = filter.toLocaleLowerCase();
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalize));
